@@ -4,8 +4,8 @@
  
 Tutorial de capacitación en la construcción de sitios web dinámicos y estáticos sonde AWS 
   
-###  
 #### 1 Desplegar un sitio estático usando S3 
+
 Empezaremos por buscar el servicio S3 entre la lista de servicios ofrecidos en la consola de AWS 
  
    ![](img/s3_1.png) 
@@ -67,6 +67,7 @@ Una vez habilitado podremos acceder al sitio estático con todas las funcionalid
 **[Video demostrativo del funcionamiento](video/s3_arep.mp4)**
   
 #### 2 Crear servidor Java usando EC2 que sea capaz de consumir una DB 
+
 Iniciaremos por crear un proyecto Spring a partir de [Spring Initializr](https://start.spring.io) seleccionaremos Maven como project, Gradle es igualmente valido, seleccionaremos el  _Group_ y _Artifact_ de nuestro gusto, 
 En la sección de dependencias agregaremos 2 dependencias extra, *Spring Web* y *Spring Data JDBC* luego explicaremos el uso de estas dependencias. 
   
@@ -175,6 +176,7 @@ Adicionalmente agregaremos un controlador extra con el fin de mostrar una págin
    ``` 
  
 #### 3 Creación de un RDS en AWS 
+
 Primero accederemos a la consola de AWS y buscaremos **RDS** 
    ![](img/rds_1.png) 
   
@@ -266,15 +268,15 @@ Ahora nos vamos a conectar a la base de datos, colocaremos las credenciales y el
 Primero debemos modificar el `application.properties` con las credenciales y URL de la base de datos, después usaremos `mvn packege` para genera el compilado, ya que estamos trabajando con un proyecto Spring Boot, este ya cuenta con un plugin para la construcción del proyecto que se encargará de subir todas las dependencias y _resources_ pertinenetes para ejecutar el proyecto en el empaqueta Jar que genera.  
 En caso de tener conflictos con los test, los podemos eliminar por ahora con el fin de obtener el Jar, dicho Jar lo encontramos en `/targe/EC2-0.0.1-SNAPSHOT.jar` 
   
-  ![](img/conf_1.png) 
+   ![](img/conf_1.png) 
   
 Este archivo lo subiremos a la maquina en EC2, para esto usaremos SFTP y la conexión es muy similar a la que realizamos por SSH, debemos tener en la carpeta nuestra llave `pem` para conectarnos. 
   
-  ![](img/conf_2.png) 
+   ![](img/conf_2.png) 
     
 Por último nuevamente nos conectaremos a la maquina y ejecutaremos el Jar con el comando de java `java -jar EC2-0.0.1-SNAPSHOT.jar` esto levantará el servicio en la instacia EC2 
   
-  ![](img/conf_3.png) 
+   ![](img/conf_3.png) 
    ![](img/conf_4.png) 
     
   Ya podemos acceder a la URL de la maquina EC2 desde el navegador, es importante especificar el puerto 8080 en la URL 
@@ -283,7 +285,29 @@ Por último nuevamente nos conectaremos a la maquina y ejecutaremos el Jar con e
     
   **[Video demostrativo del funcionamiento](video/EC2_postgres_arep.mp4)**
    
+#### 7 Costo de la infraestructura de AWS
+
+ La siguente informacion de el costo de la infraestructura de AWS es proporcianada desde la pagina oficial.
+
+ * **S3**: [Pagina oficial](https://aws.amazon.com/es/s3/pricing/)
+  
+  ![](img/cost_s3_1.png) 
+  
+ * **EC2**: [Pagina oficial](https://aws.amazon.com/es/ec2/pricing/)
  
+  ![](img/cost_ec2_1.png) 
+  ![](img/cost_ec2_2.png) 
+  ![](img/cost_ec2_3.png) 
+  ![](img/cost_ec2_4.png) 
+  ![](img/cost_ec2_5.png) 
+  ![](img/cost_ec2_6.png) 
+  
+ * **RDS Postgres**: [Pagina oficial](https://aws.amazon.com/es/rds/postgresql/pricing//)
+ 
+  ![](img/cost_rds_1.png) 
+  ![](img/cost_rds_2.png) 
+
+
 ### Built with 
  
 * [Java](https://www.java.com) - programming language 
